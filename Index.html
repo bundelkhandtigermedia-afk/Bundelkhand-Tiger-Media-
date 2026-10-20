@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bundelkhand Tiger Media | बुंदेलखंड का नंबर 1 न्यूज़ पोर्टल</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background-color: #f5f6fa;
+            color: #333;
+        }
+        /* टॉप बार (सोशल लिंक्स और ब्रेकिंग न्यूज़) */
+        .top-bar {
+            background-color: #111;
+            color: white;
+            padding: 8px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9rem;
+            flex-wrap: wrap;
+        }
+        .breaking-tag {
+            background-color: #ff4e00;
+            padding: 2px 8px;
+            font-weight: bold;
+            border-radius: 3px;
+            margin-right: 10px;
+        }
+        .top-social a {
+            color: white;
+            text-decoration: none;
+            margin-left: 15px;
+        }
+        .top-social a:hover {
+            color: #ec9f05;
+        }
+
+        /* मुख्य हेडर */
+        header {
+            background: linear-gradient(135deg, #1e1e24, #111115);
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+            border-bottom: 4px solid #ff4e00;
+        }
+        header h1 {
+            font-size: 2.8rem;
+            color: #ff4e00;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        header p {
+            font-size: 1.1rem;
+            color: #ccc;
+            margin-top: 5px;
+        }
+
+        /* मुख्य नेविगेशन मेनू (सारे न्यूज़ लिंक) */
+        nav {
+            background-color: #222;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            overflow-x: auto;
+            white-space: nowrap;
+            text-align: center;
+        }
+        nav a {
+            display: inline-block;
+            color: white;
+            text-decoration: none;
+            padding: 15px 20px;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        nav a:hover, nav a.active {
+            background-color: #ff4e00;
+            color: white;
+        }
+
+        /* मुख्य लेआउट कंटेनर */
+        .container {
+            max-width: 1200px;
+            margin: 25px auto;
+            padding: 0 15px;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 25px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* न्यूज़ सेक्शन्स */
+        .main-content .section-title {
+            background-color: #ff4e00;
+            color: white;
+            padding: 10px 15px;
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            border-left: 5px solid #222;
+        }
+        
+        .news-card {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            margin-bottom: 20px;
+            overflow: hidden;
+            border: 1px solid #e1e4e8;
+        }
+        .news-body {
+            padding: 20px;
+        }
+        .news-tag {
+            color: #ff4e00;
+            font-weight: bold;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+        }
+        .news-body h3 {
+            margin: 10px 0;
+            font-size: 1.4rem;
+            color: #111;
+        }
+        .news-body p {
+            color: #555;
+            line-height: 1.6;
+        }
+        .read-more {
+            display: inline-block;
+            margin-top: 15px;
+            color: #ff4e00;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        /* साइडबार (महत्वपूर्ण लिंक और सोशल प्लगइन्स) */
+        .sidebar-widget {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            margin-bottom: 25px;
+            border-top: 4px solid #ff4e00;
+        }
+        .sidebar-widget h4 {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            color: #111;
+            border-bottom: 2px solid #f0f0f0;
+            padding-bottom: 5px;
+        }
+        .link-list {
+            list-style: none;
+        }
+        .link-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+        .link-list li a {
+            color: #333;
+            text-decoration: none;
+            font-weight: 500;
+            display: block;
+        }
+        .link-list li a:hover {
+            color: #ff4e00;
+            padding-left: 5px;
+            transition: all 0.2s;
+        }
+
+        /* सोशल मीडिया बटन्स */
+        .social-btn {
+            display: block;
+            text-align: center;
+            padding: 12px;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+        .youtube { background-color: #ff0000; }
+        .facebook { background-color: #3b5998; }
+        .instagram { background-color: #e1306c; }
+
+        /* फुटर (निचला हिस्सा) */
+        footer {
+            background-color: #111;
+            color: #ccc;
+            padding: 40px 20px 20px;
+            margin-top: 50px;
+        }
+        .footer-links {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .footer-links a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 0.95rem;
+        }
+        .footer-links a:hover {
+            color: #ff4e00;
+        }
+        .footer-bottom {
+            text-align: center;
+            border-top: 1px solid #333;
+            padding-top: 20px;
+            font-size: 0.85rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- टॉप बार -->
+    <div class="top-bar">
+        <div>
+            <span class="breaking-tag">ब्रेकिंग न्यूज़</span>
+            <span>बुंदेलखंड के विकास के लिए जल्द जारी होगा नया बजट...</span>
+        </div>
+        <div class="top-social">
+            <a href="#youtube">YouTube</a>
+            <a href="#facebook">Facebook</a>
+            <a href="#instagram">Instagram</a>
+        </div>
+    </div>
+
+    <!-- हेडर -->
+    <header>
+        <h1>Bundelkhand Tiger Media</h1>
+        <p>बुंदेलखंड की आवाज़, निष्पक्ष और बेबाक समाचार पोर्टल</p>
+    </header>
+
+    <!-- मुख्य न्यूज़ कैटेगरी लिंक्स -->
+    <nav>
+        <a href="#home" class="active">होम</a>
+        <a href="#bundelkhand">बुंदेलखंड लोकल</a>
+        <a href="#desh-videsh">देश-विदेश</a>
+        <a href="#politics">राजनीति</a>
+        <a href="#sports">खेल जगत</a>
+        <a href="#entertainment">मनोरंजन</a>
+        <a href="#videos">वीडियो</a>
+    </nav>
+
+    <!-- मुख्य बॉडी कंटेनर -->
+    <div class="container">
+        
+        <!-- बायां हिस्सा: समाचार फ़ीड -->
+        <main class="main-content">
+            <div class="section-title">प्रमुख समाचार</div>
+
+            <!-- न्यूज़ कार्ड 1 -->
+            <div class="news-card" id="bundelkhand">
+                <div class="news-body">
+                    <span class="news-tag">बुंदेलखंड लोकल</span>
+                    <h3>बुंदेलखंड में पानी की समस्या का स्थाई समाधान, नए जलाशयों का निर्माण शुरू</h3>
+                    <p>क्षेत्र में सिंचाई और पीने के पानी की किल्लत को दूर करने के लिए प्रशासन ने व्यापक स्तर पर काम शुरू कर दिया है। ग्रामीण इलाकों में खुशी की लहर।</p>
+                    <a href="#news-link-1" class="read-more">पूरी ख़बर पढ़ें »</a>
+                </div>
+            </div>
+
+            <!-- न्यूज़ कार्ड 2 -->
+            <div class="news-card" id="politics">
+                <div class="news-body">
+                    <span class="news-tag">राजनीति</span>
+                    <h3>आगामी चुनावों को लेकर क्षेत्रीय पार्टियों ने कसी कमर, जनसभाएं तेज</h3>
+                    <p>सभी राजनैतिक दलों ने बुंदेलखंड के विकास को मुख्य चुनावी मुद्दा बनाते हुए वोटरों को लुभाने के लिए बड़े दावे करने शुरू कर दिए हैं।</p>
+                    <a href="#news-link-2" class="read-more">पूरी ख़बर पढ़ें »</a>
+                </div>
+            </div>
+
+            <!-- न्यूज़ कार्ड 3 -->
+            <div class="news-card" id="sports">
+                <div class="news-body">
+                    <span class="news-tag">खेल जगत</span>
+                    <h3>बुंदेलखंड के युवाओं ने खेल प्रतियोगिता में जीते स्वर्ण पदक</h3>
+                    <p>राज्य स्तरीय खेल कूद प्रतियोगिता में क्षेत्र के होनहार खिलाड़ियों ने बेहतरीन प्रदर्शन कर जिले का नाम रोशन किया है।</p>
+                    <a href="#news-link-3" class="read-more">पूरी ख़बर पढ़ें »</a>
+                </div>
+            </div>
+        </main>
+
+        <!-- दायां हिस्सा: साइडबार और महत्वपूर्ण कस्टमाइज्ड लिंक्स -->
+        <aside class="sidebar">
+            
+            <!-- सोशल मीडिया चैनल लिंक्स -->
+            <div class="sidebar-widget">
+                <h4>हमारे सोशल मीडिया से जुड़ें</h4>
+                <a href="https://youtube.com" target="_blank" class="social-btn youtube">YouTube चैनल सब्सक्राइब करें</a>
+                <a href="https://facebook.com" target="_blank" class="social-btn facebook">Facebook पेज लाइक करें</a>
+                <a href="https://instagram.com" target="_blank" class="social-btn instagram">Instagram पर फॉलो करें</a>
+            </div>
+
+            <!-- ट्रेंडिंग या अन्य महत्वपूर्ण कस्टमाइज्ड लिंक्स -->
+            <div class="sidebar-widget">
+                <h4>महत्वपूर्ण लिंक्स</h4>
+                <ul class="link-list">
+                    <li><a href="#e-paper">डिजिटल ई-पेपर (E-Paper)</a></li>
+                    <li><a href="#job-updates">रोजगार समाचार (Jobs)</a></li>
